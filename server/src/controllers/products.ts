@@ -43,9 +43,9 @@ export const getItemsByQuery = async (req: Request, res: Response) => {
       items: formatItems(products),
     };
 
-    res.send(items);
+    res.status(200).json(items);
   } catch (error) {
-    res.status(500).send("Error");
+    res.status(400).send("error");
   }
 };
 
@@ -66,8 +66,8 @@ export const getItemById = async (req: Request, res: Response) => {
       item: formatedItem,
     };
 
-    res.send(item);
+    res.status(200).json(item);
   } catch (error) {
-    res.status(500).send("Error");
+    res.status(400).send("error");
   }
 };
