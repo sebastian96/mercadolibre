@@ -1,0 +1,33 @@
+@import "../variables.scss";
+
+.header {
+  background-color: $primary-color;
+  height: $header-box-height;
+  &-box {
+    display: flex;
+    align-items: center;
+    padding-top: 0.9rem;
+    &__logo {
+      margin-right: 25px;
+    }
+    &__search-bar {
+      width: 95%;
+      height: 39px;
+      display: flex;
+      input {
+        width: 100%;
+        height: inherit;
+        padding-left: 10px;
+        border: none;
+      }
+
+      button {
+        width: 5%;
+        height: 41px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import "../variables.scss";
+
+.home {
+  background-color: $background-color;
+  font-family: sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  padding-bottom: 5vh;
+  &-breadcrumbs {
+    text-align: left;
+    font-size: 13px;
+    margin: 2rem 0;
+  }
+}
