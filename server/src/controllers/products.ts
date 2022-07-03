@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IFormatedItems, IFormatedItem } from "interfaces/products";
 import { formatItems, formatItem } from "../helpers/formatItems";
+import { getNameCategory } from "../helpers/nameCategory";
 import axios from "axios";
 const apiRoute = "https://api.mercadolibre.com/";
 
@@ -20,26 +21,12 @@ export const getItemsByQuery = async (req: Request, res: Response) => {
       products.push(randomProduct);
     }
 
-    const getNameCategory = async (products: Array<any>) => {
-      let categories: Array<string> = [];
-      for await (const product of products) {
-        const response = await axios.get(
-          `${apiRoute}/categories/${product.category_id}`
-        );
-
-        if (!categories.includes(response.data.name)) {
-          categories.push(response.data.name);
-        }
-      }
-      return categories;
-    };
-
     const items = {
       author: {
         name: "Sebastian",
         lastname: "Miranda",
       },
-      categories: await getNameCategory(products),
+      categories: await getNameCategory(products, apiRoute),
       items: formatItems(products),
     };
 
@@ -64,6 +51,7 @@ export const getItemById = async (req: Request, res: Response) => {
         lastname: "Miranda",
       },
       item: formatedItem,
+      category: await getNameCategory([apiItem.data], apiRoute),
     };
 
     res.status(200).json(item);

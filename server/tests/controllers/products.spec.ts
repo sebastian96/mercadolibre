@@ -62,6 +62,7 @@ describe("GET /items/:id", () => {
 
       expect(response.body.author).toBeDefined();
       expect(response.body.item).toBeDefined();
+      expect(response.body.category).toBeDefined();
     });
   });
 
