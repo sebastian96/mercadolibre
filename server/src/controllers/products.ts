@@ -5,6 +5,11 @@ import { getNameCategory } from "../helpers/nameCategory";
 import axios from "axios";
 const apiRoute = "https://api.mercadolibre.com/";
 
+/**
+ * Function for get the data about the query send in the params and format to response
+ * @param req.query q: string, world to consume api ML, eg. "Iphone"
+ * @param res json: data, eg. {{author: {}, category: [], items: {}}}
+ */
 export const getItemsByQuery = async (req: Request, res: Response) => {
   try {
     const { q } = req.query;
@@ -36,6 +41,11 @@ export const getItemsByQuery = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Function for get the data about the {id} send in the params and format to response
+ * @param req.params id: string: id related to any product, eg. "MLA907539210"
+ * @param res json: data, eg. {{author: {}, category: [], item: {}}}
+ */
 export const getItemById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
