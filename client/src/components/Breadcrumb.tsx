@@ -1,11 +1,22 @@
-import { Link } from "react-router-dom";
+import { useLayoutEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "../hooks";
 import "../styles/components/Breadcrumb.scss";
 
 const Breadcrumb = () => {
-  const { categories } = useAppSelector((state) => state.products);
+  const location = useLocation();
+  const { categories, items } = useAppSelector((state) => state.products);
+  const [showBreadCrumb, setShowBreadcrumb] = useState(true);
 
-  if (categories.length > 0) {
+  useLayoutEffect(() => {
+    if (location.pathname === "/" && items.length === 0) {
+      setShowBreadcrumb(false);
+    } else {
+      setShowBreadcrumb(true);
+    }
+  }, [location, items]);
+
+  if (categories.length > 0 && showBreadCrumb) {
     return (
       <nav className="breadcrumbs">
         <ul className="breadcrumbs-nav">
