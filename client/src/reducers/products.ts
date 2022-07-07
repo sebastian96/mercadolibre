@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
+import { history } from "../history";
 interface ProductsState {
   categories: Array<string>;
   items: Array<object>;
@@ -28,10 +28,18 @@ export const fetchItems = (action: string) => {
   return async (dispatch: any) => {
     const response = await fetch(`http://localhost:4000/api/items?q=${action}`);
 
-    response.json().then((data) => {
-      dispatch(setCategories(data.categories));
-      dispatch(setItems(data.items));
-    });
+    if (response.status === 400) {
+      history.push("/error");
+    }
+
+    response
+      .json()
+      .then((data) => {
+        dispatch(setCategories(data.categories));
+        dispatch(setItems(data.items));
+        history.push("/");
+      })
+      .catch((err) => console.error(err));
   };
 };
 

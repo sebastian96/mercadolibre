@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { fetchItems } from "../reducers/producst";
+import { fetchItems } from "../reducers/products";
 import { useAppDispatch } from "../hooks";
 import "../styles/components/Header.scss";
 

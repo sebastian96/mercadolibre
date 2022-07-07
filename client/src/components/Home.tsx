@@ -5,7 +5,6 @@ import { faTruckFast } from "@fortawesome/free-solid-svg-icons";
 import { formatCurrency } from "../utils";
 
 import "../styles/components/Home.scss";
-import "../styles/components/Items.scss";
 
 const Home = () => {
   const { items } = useAppSelector((state) => state.products);
@@ -34,7 +33,7 @@ const Home = () => {
                   {formatCurrency(item.price.amount)}{" "}
                   {freeShipping(item.free_shipping)}
                 </h2>
-                <p className="item-info__description">{item.title}</p>
+                <p className="item-info__title">{item.title}</p>
               </div>
               <div className="item-city">
                 <p>{item.city}</p>

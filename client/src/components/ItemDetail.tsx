@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { fetchItem } from "../reducers/product";
-import "../styles/components/ItemDetails.scss";
+import "../styles/components/ItemDetail.scss";
 import { formatCurrency } from "../utils";
 
 const ItemDetail = () => {
@@ -10,8 +10,12 @@ const ItemDetail = () => {
   const { id } = useParams();
   const { item }: any = useAppSelector((state) => state.product);
 
+  const getDataItem = async () => {
+    await dispatch(fetchItem(id ? id : ""));
+  };
+
   useLayoutEffect(() => {
-    dispatch(fetchItem(id ? id : ""));
+    getDataItem();
   }, [dispatch, id]);
 
   if (Object.keys(item).length > 0) {
@@ -19,7 +23,7 @@ const ItemDetail = () => {
       <div className="item-detail" key={item.id}>
         <img className="item-detail__picture" src={item.picture} alt="" />
         <div className="item-detail__info">
-          <p>{`${item.condition} - ${item.sold_quantity} vendidos`}</p>
+          <small>{`${item.condition} - ${item.sold_quantity} vendidos`}</small>
           <h3>{item.title}</h3>
           <h2 className="item-detail__price">
             {formatCurrency(item.price.amount)}

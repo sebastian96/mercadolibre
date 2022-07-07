@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { setCategories } from "./producst";
-
+import { setCategories } from "./products";
+import { history } from "../history";
 interface ProductState {
   item: object;
 }
@@ -23,6 +23,10 @@ export const fetchItem = (action: string) => {
   return async (dispatch: any, getSate: any) => {
     const response = await fetch(`http://localhost:4000/api/items/${action}`);
     const currentStateProducts = getSate().products;
+
+    if (response.status === 400) {
+      history.push("/error");
+    }
     response
       .json()
       .then((data) => {

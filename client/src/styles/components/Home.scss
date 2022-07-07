@@ -6,4 +6,45 @@
   text-align: center;
   min-height: 100vh;
   padding-bottom: 5vh;
+  .search-result {
+    background-color: #fff;
+    border-radius: 4px;
+    a {
+      text-decoration: none;
+      .item {
+        display: grid;
+        grid-template-columns: 180px 1fr 120px;
+        border-top: 1px solid rgba(#ddd, 0.6);
+        margin-bottom: 5px;
+        padding: 10px;
+        max-height: 200px;
+        &-picture {
+          width: 180px;
+          height: 180px;
+          object-fit: cover;
+          align-self: center;
+        }
+        &-info {
+          padding: 20px;
+          text-align: left;
+          color: #000;
+          h2 {
+            font-weight: normal;
+            margin-bottom: 20px;
+            small {
+              color: #3ea16a;
+            }
+          }
+        }
+        &-city {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p {
+            color: #6a6a6a;
+          }
+        }
+      }
+    }
+  }
 }

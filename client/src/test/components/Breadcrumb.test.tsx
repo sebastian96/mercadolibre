@@ -2,11 +2,12 @@ import { render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import Home from "../../components/Home";
+import Breadcrumb from "../../components/Breadcrumb";
 import "@testing-library/jest-dom";
 
 let initialState: any = {
   products: {
+    categories: ["Autos y Camionetas", "Carros Zorra"],
     items: [
       {
         id: "MLA1129805664",
@@ -28,36 +29,29 @@ let initialState: any = {
 const mockStore = configureStore();
 let store: any;
 
-describe("<Home /> component", () => {
+describe("<Breadcrumb /> component", () => {
   let component: any;
 
   beforeEach(() => {
     store = mockStore(initialState);
     component = render(
       <Provider store={store}>
-        <Home />
+        <Breadcrumb />
       </Provider>,
       { wrapper: BrowserRouter }
     );
   });
 
-  it("should render a items", () => {
-    const { container, getByText } = component;
-    const { items } = store.getState().products;
+  it("should render a links with categories", () => {
+    const { getByText } = component;
+    const { categories } = store.getState().products;
 
-    expect(container.firstChild).toBeDefined();
-
-    items.forEach((item: any) => {
-      expect(container.querySelector("img").src).toBe(item.picture);
-      expect(container.querySelector("a").href).toContain(item.id);
-      expect(container.querySelector(".item-info__title").textContent).toBe(
-        item.title
-      );
-      expect(getByText(item.city)).toBeInTheDocument();
+    categories.forEach((category: string) => {
+      expect(getByText(category)).toBeInTheDocument();
     });
   });
 
-  it("Should not render items if store is empty", () => {
+  it("should not displayed a breadcrumb", () => {
     component.rerender();
     const { container } = component;
     expect(container.firstChild).toBe(null);
