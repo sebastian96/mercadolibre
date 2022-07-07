@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { fetchItem } from "../reducers/product";
+import { fetchItem, setItem } from "../reducers/product";
 import "../styles/components/ItemDetail.scss";
 import { formatCurrency } from "../utils";
 
@@ -15,6 +15,9 @@ const ItemDetail = () => {
   };
 
   useLayoutEffect(() => {
+    if (Object.keys(item).length > 0) {
+      dispatch(setItem({}));
+    }
     getDataItem();
   }, [dispatch, id]);
 

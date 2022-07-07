@@ -5,7 +5,9 @@ import "../styles/components/Breadcrumb.scss";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  const { categories, items } = useAppSelector((state) => state.products);
+  const { categories, items, isLoading } = useAppSelector(
+    (state) => state.products
+  );
   const [showBreadCrumb, setShowBreadcrumb] = useState(true);
 
   useLayoutEffect(() => {
@@ -27,14 +29,15 @@ const Breadcrumb = () => {
             <Link to="/">Inicio</Link>
           </li>
           <span>{"-"}</span>
-          {categories.map((category: any, i: number) => (
-            <Fragment key={i}>
-              <li>
-                <Link to="/">{category}</Link>
-              </li>
-              {i !== categories.length - 1 && <span>{"-"}</span>}
-            </Fragment>
-          ))}
+          {!isLoading &&
+            categories.map((category: any, i: number) => (
+              <Fragment key={i}>
+                <li>
+                  <Link to="/">{category}</Link>
+                </li>
+                {i !== categories.length - 1 && <span>{"-"}</span>}
+              </Fragment>
+            ))}
         </ul>
       </nav>
     );
