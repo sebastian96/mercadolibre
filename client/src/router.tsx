@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import ItemDetail from "./components/ItemDetail";
 import Header from "./components/Header";
 import Breadcrumb from "./components/Breadcrumb";
+import NotFoundPage from "./components/NotFoundPage";
 
 const Router = () => (
   <BrowserRouter>
@@ -13,6 +14,7 @@ const Router = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={<ItemDetail />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </main>

@@ -1,0 +1,24 @@
+.notFound {
+  background-color: #fff;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 0;
+  &-icon {
+    font-size: 7rem;
+    color: #d34d4d;
+  }
+  &-text {
+    text-align: left;
+    h3 {
+      margin-bottom: 0.9rem;
+    }
+    ul {
+      margin-left: 16px;
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}

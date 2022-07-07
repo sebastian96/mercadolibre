@@ -23,12 +23,18 @@
         h2 {
           font-weight: normal;
           margin-bottom: 20px;
+          small {
+            color: #3ea16a;
+          }
         }
       }
-      &-action {
+      &-city {
         display: flex;
         justify-content: center;
         align-items: center;
+        p {
+          color: #6a6a6a;
+        }
       }
     }
   }

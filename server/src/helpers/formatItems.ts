@@ -7,6 +7,7 @@ export const formatItems = (products: any) => {
       picture: product.thumbnail,
       condition: product.condition,
       free_shipping: product.shipping.free_shipping,
+      city: product.address.city_name,
       price: {
         currency: product.currency_id,
         amount: product.price,
